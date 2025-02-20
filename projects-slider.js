@@ -10,18 +10,22 @@ const projectSlider = new Swiper(".swiper.is-projects", {
         prevEl: '[data-swiper-prev]',
     },
 
+    //Styling the swiper
     initialSlide: 1,
-    slideToClickedSlide:'true',
-    mousewheel: 'true',
-    forceToAxis: 'true',
     spaceBetween: 0,
     centeredSlides: 'true',
     speed: 700,
     slidesPerView: 'auto',
-    keyboard: {
-        enabled: true,
-      },
     loop: 'true',
+
+    //Navigating the swiper
+    slideToClickedSlide:'true',
+    direction: 'horizontal',
+    mousewheel: 'true',
+    forceToAxis: 'true',
+    keyboard: {
+      enabled: true,
+    },
     simulateTouch: 'true',
     momentum: 'true',
     minimumVelocity: .01,
