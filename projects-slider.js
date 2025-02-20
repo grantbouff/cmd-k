@@ -13,21 +13,21 @@ const projectSlider = new Swiper(".swiper.is-projects", {
     //Styling the swiper
     initialSlide: 1,
     spaceBetween: 0,
-    centeredSlides: 'true',
+    centeredSlides: true,
     speed: 700,
     slidesPerView: 'auto',
-    loop: 'true',
+    loop: true,
 
     //Navigating the swiper
-    slideToClickedSlide:'true',
+    slideToClickedSlide:true,
     direction: 'horizontal',
-    mousewheel: 'true',
-    forceToAxis: 'true',
+    mousewheel: true,
+    forceToAxis: true,
     keyboard: {
       enabled: true,
     },
-    simulateTouch: 'true',
-    momentum: 'true',
+    simulateTouch: true,
+    momentum: true,
     minimumVelocity: .01,
 
   });
