@@ -28,7 +28,7 @@ const projectSlider = new Swiper(".swiper.is-projects", {
     },
     simulateTouch: true,
     momentum: true,
-    minimumVelocity: .01,
+    minimumVelocity: 0.01,
 
   });
   
