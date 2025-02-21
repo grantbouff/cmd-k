@@ -6,8 +6,8 @@ const projectSlider = new Swiper(".swiper.is-projects", {
     wrapperClass: "swiper-wrapper",
     slideClass: "swiper-item",
     navigation: {
-        nextEl: '[data-swiper-next]',
-        prevEl: '[data-swiper-prev]',
+      nextEl: '[data-swiper-next]',
+      prevEl: '[data-swiper-prev]',
     },
 
     //Styling the swiper
@@ -21,8 +21,9 @@ const projectSlider = new Swiper(".swiper.is-projects", {
     //Navigating the swiper
     slideToClickedSlide:true,
     direction: 'horizontal',
-    mousewheel: true,
-    forceToAxis: true,
+    mousewheel: {
+      forceToAxis: true
+    },
     keyboard: {
       enabled: true,
     },
