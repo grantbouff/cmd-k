@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Webflow components",
   "scripts": {
-    "build": "node-bundle.js"
+    "build": "node bundle.js"
   }
 }

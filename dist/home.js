@@ -1,4 +1,4 @@
-/* main.js - Generated 2025-02-25T10:21:56.742Z */
+/* home.js - Generated 2025-02-25T10:34:08.908Z */
 
 /* File: benefits-simple-slide.js */
 const benefits = document.querySelector(".benefits_all-cards");
