@@ -1,4 +1,4 @@
-/* home.js - Generated 2025-02-25T11:27:05.229Z */
+/* home.js - Generated 2025-02-25T12:11:27.886Z */
 
 console.log("home.js bundle loaded");
 
@@ -84,10 +84,10 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Add the follow element animation to run after the split text animation
         if (followElement) {
-            tl.to(followElement, {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
+            tl.from(followElement, {
+                opacity: 0,
+                y: "50%",
+                duration: 2,
                 ease: "power2.out"
             }, "-=0.3"); // Start slightly before the previous animation finishes
         }
