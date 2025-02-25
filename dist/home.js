@@ -1,6 +1,164 @@
-/* home.js - Generated 2025-02-25T10:34:08.908Z */
+/* home.js - Generated 2025-02-25T10:47:51.968Z */
+
+console.log("home.js bundle loaded");
+
+// Initialize namespace
+window.CMD_K = window.CMD_K || {};
+window.CMD_K.components = {};
+
+/* Warning: File init.js not found */
+console.error("Missing file: init.js");
+
+/* File: gsap-split-text.js */
+console.log("Loading gsap-split-text.js");
+(function() {
+document.addEventListener("DOMContentLoaded", function() {
+
+    const splitTypes = document.querySelectorAll('[anima-gsap="split-text"]');
+
+
+    splitTypes.forEach((char, i) => {
+    const text = new SplitType(char, { types: ['chars', 'words'] });
+    gsap.from(text.chars, {
+        scrollTrigger: {
+        trigger: char,
+        start: 'top 80%',
+        end: 'top 20%',
+        scrub: true,
+        },
+        opacity: 0.2,
+        stagger: 0.1,
+    })
+    });
+
+});
+})();
+
+/* File: projects-slider.js */
+console.log("Loading projects-slider.js");
+(function() {
+const projectSlider = new Swiper(".swiper.is-projects", {
+    a11y: {
+        prevSlideMessage: 'Previous slide',
+        nextSlideMessage: 'Next slide',
+      },
+    wrapperClass: "swiper-wrapper",
+    slideClass: "swiper-item",
+    navigation: {
+      nextEl: '[data-swiper-next]',
+      prevEl: '[data-swiper-prev]',
+    },
+
+    //Styling the swiper
+    initialSlide: 1,
+    spaceBetween: 0,
+    centeredSlides: true,
+    speed: 700,
+    slidesPerView: 'auto',
+    loop: true,
+
+    //Navigating the swiper
+    slideToClickedSlide:true,
+    direction: 'horizontal',
+    mousewheel: {
+      forceToAxis: true
+    },
+    keyboard: {
+      enabled: true,
+    },
+    simulateTouch: true,
+    momentum: true,
+    minimumVelocity: 0.01,
+
+  });
+  
+})();
+
+/* File: services-cascade.js */
+console.log("Loading services-cascade.js");
+(function() {
+    document.addEventListener('DOMContentLoaded', () => {
+        const isMobile = window.matchMedia("(max-width: 479px)");
+        
+        if (isMobile.matches) {
+          // Mobile animation - trigger each card individually
+          gsap.utils.toArray(".services_card").forEach((card, index) => {
+            let servicesTimeMobile = gsap.timeline({
+              scrollTrigger: {
+                trigger: card,
+                start: "top 90%",
+                end: "bottom -20%",
+                scrub: 1,
+                // markers: true,
+                id: `card-${index}`,
+              }
+            });
+          
+            // Step 1: Fade + move in (first 30% of scroll)
+            servicesTimeMobile.fromTo(
+              card, 
+              { y: "25%", scale: 0.9, opacity: 0 },
+              { y: "0%", scale: 1, opacity: 1, ease: "power2.out" },
+              "0%" // Start at the beginning of the timeline
+            );
+          
+            // Step 2: Hold the card in place (30% to 60% of scroll)
+            servicesTimeMobile.to(
+              card,
+              { y: "-10%", scale: 0.95, opacity: 1 }, 
+              "30%" // Hold animation at 30% of the scroll duration
+            );
+          
+            // Step 3: Fade + move out (60% to 100% of scroll)
+            servicesTimeMobile.to(
+              card,
+              { y: "-15%", scale: 0.85, opacity: 0, ease: "none" },
+              "60%" // Start fading out at 60% of the scroll duration
+            );
+          });
+        } else {
+          // Your existing desktop timeline
+          let servicesTimeDesk = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".section_services",
+              start: "15% 80%",
+              end: "90% 80%",
+              scrub: 2,
+              toggleActions: "play play reverse reset"
+            }
+          });
+
+          servicesTimeDesk.from(".services_heading-wrapper", {
+            y: "50%",
+            opacity: 0,
+            duration: 1
+          });
+          
+          servicesTimeDesk.from(".services_card", {
+              y: "50%",
+              scale: .9,
+              // rotate: 50,
+              stagger: { amount: 5 },
+              duration: 8,
+              ease: "back.out(1)",
+            },
+            "<.25"
+          );
+          
+          servicesTimeDesk.from(".services_technical-label", {
+              y: "25%",
+              opacity: 0,
+              duration: 4
+            },
+            "<.75"
+          );
+        }
+      });
+})();
 
 /* File: benefits-simple-slide.js */
+console.log("Loading benefits-simple-slide.js");
+(function() {
 const benefits = document.querySelector(".benefits_all-cards");
 const benefitsWrapper = document.querySelector(".benefits_wrapper");
 const cards = benefits.querySelectorAll('.benefits_card');
@@ -176,8 +334,11 @@ initBenefitAnimations();
 
 // Re-init on screen size change
 mediaQuery.addEventListener('change', initBenefitAnimations);
+})();
 
 /* File: check-box-logic.js */
+console.log("Loading check-box-logic.js");
+(function() {
 $(document).ready(function () {
 // Get all real option labels (excluding no-design)
 const realOptionLabels = Array.from(document.querySelectorAll(
@@ -311,142 +472,21 @@ function cleanup() {
 
 });
 
-
-/* File: gsap-split-text.js */
-document.addEventListener("DOMContentLoaded", function() {
-
-    const splitTypes = document.querySelectorAll('[anima-gsap="split-text"]');
+})();
 
 
-    splitTypes.forEach((char, i) => {
-    const text = new SplitType(char, { types: ['chars', 'words'] });
-    gsap.from(text.chars, {
-        scrollTrigger: {
-        trigger: char,
-        start: 'top 80%',
-        end: 'top 20%',
-        scrub: true,
-        },
-        opacity: 0.2,
-        stagger: 0.1,
-    })
-    });
-
-});
-
-/* File: projects-slider.js */
-const projectSlider = new Swiper(".swiper.is-projects", {
-    a11y: {
-        prevSlideMessage: 'Previous slide',
-        nextSlideMessage: 'Next slide',
-      },
-    wrapperClass: "swiper-wrapper",
-    slideClass: "swiper-item",
-    navigation: {
-      nextEl: '[data-swiper-next]',
-      prevEl: '[data-swiper-prev]',
-    },
-
-    //Styling the swiper
-    initialSlide: 1,
-    spaceBetween: 0,
-    centeredSlides: true,
-    speed: 700,
-    slidesPerView: 'auto',
-    loop: true,
-
-    //Navigating the swiper
-    slideToClickedSlide:true,
-    direction: 'horizontal',
-    mousewheel: {
-      forceToAxis: true
-    },
-    keyboard: {
-      enabled: true,
-    },
-    simulateTouch: true,
-    momentum: true,
-    minimumVelocity: 0.01,
-
+// Initialize all components when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM ready, initializing components");
+    if (window.CMD_K && window.CMD_K.init) {
+      window.CMD_K.init();
+    }
   });
-  
-
-/* File: services-cascade.js */
-    document.addEventListener('DOMContentLoaded', () => {
-        const isMobile = window.matchMedia("(max-width: 479px)");
-        
-        if (isMobile.matches) {
-          // Mobile animation - trigger each card individually
-          gsap.utils.toArray(".services_card").forEach((card, index) => {
-            let servicesTimeMobile = gsap.timeline({
-              scrollTrigger: {
-                trigger: card,
-                start: "top 90%",
-                end: "bottom -20%",
-                scrub: 1,
-                // markers: true,
-                id: `card-${index}`,
-              }
-            });
-          
-            // Step 1: Fade + move in (first 30% of scroll)
-            servicesTimeMobile.fromTo(
-              card, 
-              { y: "25%", scale: 0.9, opacity: 0 },
-              { y: "0%", scale: 1, opacity: 1, ease: "power2.out" },
-              "0%" // Start at the beginning of the timeline
-            );
-          
-            // Step 2: Hold the card in place (30% to 60% of scroll)
-            servicesTimeMobile.to(
-              card,
-              { y: "-10%", scale: 0.95, opacity: 1 }, 
-              "30%" // Hold animation at 30% of the scroll duration
-            );
-          
-            // Step 3: Fade + move out (60% to 100% of scroll)
-            servicesTimeMobile.to(
-              card,
-              { y: "-15%", scale: 0.85, opacity: 0, ease: "none" },
-              "60%" // Start fading out at 60% of the scroll duration
-            );
-          });
-        } else {
-          // Your existing desktop timeline
-          let servicesTimeDesk = gsap.timeline({
-            scrollTrigger: {
-              trigger: ".section_services",
-              start: "15% 80%",
-              end: "90% 80%",
-              scrub: 2,
-              toggleActions: "play play reverse reset"
-            }
-          });
-
-          servicesTimeDesk.from(".services_heading-wrapper", {
-            y: "50%",
-            opacity: 0,
-            duration: 1
-          });
-          
-          servicesTimeDesk.from(".services_card", {
-              y: "50%",
-              scale: .9,
-              // rotate: 50,
-              stagger: { amount: 5 },
-              duration: 8,
-              ease: "back.out(1)",
-            },
-            "<.25"
-          );
-          
-          servicesTimeDesk.from(".services_technical-label", {
-              y: "25%",
-              opacity: 0,
-              duration: 4
-            },
-            "<.75"
-          );
-        }
-      });
-
+} else {
+  // DOM already loaded
+  console.log("DOM already loaded, initializing components");
+  if (window.CMD_K && window.CMD_K.init) {
+    window.CMD_K.init();
+  }
+}
