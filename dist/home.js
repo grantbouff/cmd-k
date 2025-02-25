@@ -1,4 +1,4 @@
-/* home.js - Generated 2025-02-25T10:47:51.968Z */
+/* home.js - Generated 2025-02-25T11:05:56.565Z */
 
 console.log("home.js bundle loaded");
 
@@ -13,24 +13,51 @@ console.error("Missing file: init.js");
 console.log("Loading gsap-split-text.js");
 (function() {
 document.addEventListener("DOMContentLoaded", function() {
-
     const splitTypes = document.querySelectorAll('[anima-gsap="split-text"]');
 
-
-    splitTypes.forEach((char, i) => {
-    const text = new SplitType(char, { types: ['chars', 'words'] });
-    gsap.from(text.chars, {
-        scrollTrigger: {
-        trigger: char,
-        start: 'top 80%',
-        end: 'top 20%',
-        scrub: true,
-        },
-        opacity: 0.2,
-        stagger: 0.1,
-    })
+    splitTypes.forEach((element, i) => {
+        // Split the text
+        const text = new SplitType(element, { types: ['chars', 'words'] });
+        
+        // Find the follow-up element using the attribute selector
+        // Look for the nearest follow element that comes after this split-text
+        const followElement = element.closest('section, div')?.querySelector('[anima-gsap="split-follow"]');
+        
+        // First, ensure the follow element is initially invisible
+        if (followElement) {
+            gsap.set(followElement, { 
+                opacity: 0,
+                y: 20 // Start slightly below the final position
+            });
+        }
+        
+        // Create timeline for sequencing animations
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: element,
+                start: 'top 80%',
+                end: 'top 20%',
+                scrub: true,
+            }
+        });
+        
+        // Add the split text animation to the timeline
+        tl.from(text.chars, {
+            opacity: 0.2,
+            stagger: 0.1,
+            duration: 1
+        });
+        
+        // Add the follow element animation to run after the split text animation
+        if (followElement) {
+            tl.to(followElement, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.3"); // Start slightly before the previous animation finishes
+        }
     });
-
 });
 })();
 
@@ -94,26 +121,23 @@ console.log("Loading services-cascade.js");
               }
             });
           
-            // Step 1: Fade + move in (first 30% of scroll)
             servicesTimeMobile.fromTo(
               card, 
               { y: "25%", scale: 0.9, opacity: 0 },
               { y: "0%", scale: 1, opacity: 1, ease: "power2.out" },
-              "0%" // Start at the beginning of the timeline
+              "0%" 
             );
           
-            // Step 2: Hold the card in place (30% to 60% of scroll)
             servicesTimeMobile.to(
               card,
               { y: "-10%", scale: 0.95, opacity: 1 }, 
-              "30%" // Hold animation at 30% of the scroll duration
+              "30%" 
             );
           
-            // Step 3: Fade + move out (60% to 100% of scroll)
             servicesTimeMobile.to(
               card,
               { y: "-15%", scale: 0.85, opacity: 0, ease: "none" },
-              "60%" // Start fading out at 60% of the scroll duration
+              "60%" 
             );
           });
         } else {
@@ -137,7 +161,6 @@ console.log("Loading services-cascade.js");
           servicesTimeDesk.from(".services_card", {
               y: "50%",
               scale: .9,
-              // rotate: 50,
               stagger: { amount: 5 },
               duration: 8,
               ease: "back.out(1)",
@@ -175,13 +198,6 @@ function getScrollAmount() {
 
 // Create a media query for 768px and above
 const mediaQuery = window.matchMedia("(min-width: 768px)");
-
-// function shouldPin() {
-//     const scrollDistance = Math.abs(getScrollAmount());
-//     const minScrollThreshold = window.innerWidth * 0.2;
-//     return scrollDistance > minScrollThreshold;
-// }
-
 
 
 function initBenefitAnimations() {
@@ -243,92 +259,10 @@ function initBenefitAnimations() {
         each: 0.01,
         from: "start"
       }
-    }, "<"); // The "<" makes this animation start at the same time as the previous one
+    }, "<"); 
 }
 
-// function initScrollAnimations() {
-//     // Clear any existing ScrollTriggers
-//     ScrollTrigger.getAll().forEach(st => st.kill());
-  
-//     // Title animation remains the same
-//     if (mediaQuery.matches && benefitsTitle) {
-//       gsap.to(benefitsTitle, {
-//         scrollTrigger: {
-//           trigger: benefitsWrapper,
-//           start: "clamp(bottom 80%)",
-//           end: "clamp(bottom 15%)",
-//           scrub: {
-//             ease: "power2.out",
-//             duration: 4
-//           },
-//         },
-//         y: "-300%"
-//       });
-//     }
-  
-//     // Calculate the total distance each card needs to move
-//     const distance = getScrollAmount();
-    
-//     // Create a timeline for the cards
-//     const tl = gsap.timeline({
-//       scrollTrigger: {
-//         markers: true,
-//         trigger: benefitsWrapper,
-//         start: "clamp(top 90%)",
-//         end: `clamp(+=${Math.abs(distance)})`,
-//         pin: false,
-//         scrub: 2,
-//         invalidateOnRefresh: true
-//       }
-//     });
-  
-//     // Animate each card with a stagger effect
-//     tl.to(cards, {
-//       x: distance,
-//       ease: "back.inOut(1.4)",
-//       stagger: {
-//         each: 0.01, // Adjust this value to control the stagger amount
-//         from: "start" // You can change this to "center" or "end"
-//       }
-//     });
-//   }
-// function initScrollAnimations() {
-//   // Clear any existing ScrollTriggers
-//   ScrollTrigger.getAll().forEach(st => st.kill());
 
-//   // Only set up title animation if screen width is >= 768px
-//   if (mediaQuery.matches && benefitsTitle) {
-//     gsap.to(benefitsTitle, {
-//       scrollTrigger: {
-//         trigger: benefitsWrapper,
-//         start: "clamp(bottom 80%)", // Starts slightly before the cards
-//         end: "clamp(bottom 15%)", // Ends when cards begin
-//         scrub: 1,
-//       },
-//       y: "-300%", // Adjust this value as needed
-//       ease: "power2.out"
-//     });
-//   }
-
-
-//   // Main cards animation
-//   ScrollTrigger.create({
-//     markers: true,
-//     trigger: benefitsWrapper,
-//     start: "clamp(bottom 80%)",
-//     end: `clamp(+=${Math.abs(getScrollAmount())})`,
-//     pin: shouldPin(),
-//     scrub: 1,
-//     invalidateOnRefresh: true,
-//     animation: gsap.to(benefits, {
-//       x: getScrollAmount,
-//       ease: "none"
-//     })
-//   });
-
-// }
-
-// Initial setup
 
 initBenefitAnimations();
 
