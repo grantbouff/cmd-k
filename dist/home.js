@@ -1,4 +1,4 @@
-/* home.js - Generated 2025-02-25T12:13:51.277Z */
+/* home.js - Generated 2025-02-25T12:38:09.021Z */
 
 console.log("home.js bundle loaded");
 
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (followElement) {
             gsap.set(followElement, { 
                 opacity: 0,
-                y: 20 // Start slightly below the final position
+                y: "50%"
             });
         }
         
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 trigger: element,
                 start: 'top 80%',
                 end: 'top 20%',
-                scrub: true,
+                scrub: 2
             }
         });
         
@@ -79,15 +79,15 @@ document.addEventListener("DOMContentLoaded", function() {
         tl.from(text.chars, {
             opacity: 0.2,
             stagger: 0.1,
-            duration: 1
+            duration: 2
         });
         
         // Add the follow element animation to run after the split text animation
         if (followElement) {
-            tl.from(followElement, {
-                opacity: 0,
-                y: "50%",
-                duration: 2,
+            tl.to(followElement, {
+                opacity: 1,
+                y: "0%",
+                duration: 6,
                 ease: "power2.out"
             }, "-=0.3"); // Start slightly before the previous animation finishes
         }
