@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+
 document.addEventListener('DOMContentLoaded', function() {
   
     // Select the method intro card and small method cards

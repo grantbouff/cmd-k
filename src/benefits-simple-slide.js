@@ -1,3 +1,6 @@
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 const benefits = document.querySelector(".benefits_all-cards");
 const benefitsWrapper = document.querySelector(".benefits_wrapper");
 const cards = benefits.querySelectorAll('.benefits_card');

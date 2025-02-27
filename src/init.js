@@ -1,4 +1,13 @@
-// init.js - A simpler approach without duplication
+import "./benefits-simple-slide.js";
+import "./check-box-logic.js";
+import "./gsap-split-text.js";
+import "./projects-slider.js";
+import "./services-cascade.js";
+import {gsap} from "gsap";
+import {ScrollTrigger} from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 
 window.CMD_K = window.CMD_K || {};
 

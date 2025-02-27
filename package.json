@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "Webflow components",
   "scripts": {
-    "build": "node bundle.js"
+    "build": "node bundle.js",
+    "build2": "esbuild --bundle src/init.js --outfile=dist/bundle.js --minify"
+  },
+  "dependencies": {
+    "esbuild": "^0.25.0",
+    "gsap": "^3.12.7"
   }
 }
