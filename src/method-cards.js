@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".method_wrapper",
-        markers: true,
+        // markers: true,
         start: "30% center", 
         end: "+=100%",    // This makes the pinned section effectively twice its height
         pin: true,        // This is the key addition
