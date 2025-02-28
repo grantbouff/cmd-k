@@ -1,4 +1,7 @@
-import { gsap, CustomEase } from "./gsap-adapter.js";
+import { gsap } from "gsap";
+import { CustomEase } from "gsap/CustomEase";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(CustomEase, ScrollTrigger); 
 
 document.addEventListener("DOMContentLoaded", function() {
     
@@ -11,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: methodContainer,
-        // markers: true,
+        markers: true,
         start: "45% center", 
         end: "+=100%",    
         pin: true,        

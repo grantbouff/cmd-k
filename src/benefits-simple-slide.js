@@ -1,7 +1,7 @@
-import { gsap, ScrollTrigger } from "./gsap-adapter.js";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger) 
-
+gsap.registerPlugin(ScrollTrigger);
 
 const benefits = document.querySelector(".benefits_all-cards");
 const benefitsWrapper = document.querySelector(".benefits_wrapper");
@@ -23,13 +23,7 @@ const mediaQuery = window.matchMedia("(min-width: 768px)");
 
 function initBenefitAnimations() {
     // Clear any existing ScrollTriggers
-    if (ScrollTrigger && typeof ScrollTrigger.getAll === 'function') {
-      try {
-        ScrollTrigger.getAll().forEach(st => st.kill());
-      } catch (e) {
-        console.warn("Error clearing ScrollTriggers:", e);
-      }
-    }
+    ScrollTrigger.getAll().forEach(st => st.kill());
   
     // Title animation stays the same
     if (mediaQuery.matches && benefitsTitle) {

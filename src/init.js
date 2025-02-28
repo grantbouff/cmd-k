@@ -1,45 +1,42 @@
-import { gsap, ScrollTrigger, CustomEase } from "./gsap-adapter.js";
-
-// Explicitly register plugins to be safe
-if (gsap && ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
-if (gsap && CustomEase) gsap.registerPlugin(CustomEase);
-
-// Import all component modules
 import "./benefits-simple-slide.js";
 import "./check-box-logic.js";
 import "./gsap-split-text.js";
 import "./projects-slider.js";
 import "./services-cascade.js";
 import "./method-cards.js";
+import {gsap} from "gsap";
+import {ScrollTrigger} from "gsap/ScrollTrigger";
 
-// Create namespace
+gsap.registerPlugin(ScrollTrigger);
+
+
 window.CMD_K = window.CMD_K || {};
 
-// Initialize function
+// Simple initialization function that just checks dependencies
+// and calls the code that's already in your other files
 window.CMD_K.init = function() {
   console.log("Initializing CMD_K components");
   
-  // Check dependencies
-  if (typeof gsap === 'undefined' || !gsap) {
-    console.error("GSAP is not loaded. Please add the GSAP CDN to your page.");
+  // Check for required dependencies
+  if (typeof gsap === 'undefined') {
+    console.error("GSAP is not loaded");
     return;
   }
   
-  if (typeof ScrollTrigger === 'undefined' && !gsap.ScrollTrigger) {
-    console.error("ScrollTrigger is not loaded. Please add the ScrollTrigger CDN to your page.");
+  if (typeof ScrollTrigger === 'undefined' && gsap.ScrollTrigger === undefined) {
+    console.error("ScrollTrigger is not loaded");
     return;
   }
   
-  console.log("Dependencies loaded, individual components are initialized");
+  // The real initialization happens in your individual files
+  // which will run as part of the bundled JS
+  console.log("Dependencies loaded, individual components will initialize themselves");
 };
 
-// Initialize on DOM ready
+// Call the initialization function when the page loads
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', window.CMD_K.init);
 } else {
   // If DOMContentLoaded has already fired
   window.CMD_K.init();
 }
-
-// Export common utilities for other modules to use
-export { gsap, ScrollTrigger, CustomEase };

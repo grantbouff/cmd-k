@@ -1,4 +1,4 @@
-import { gsap } from "./gsap-adapter.js";
+import { gsap } from "gsap";
 
 document.addEventListener("DOMContentLoaded", function() {
     const splitTypes = document.querySelectorAll('[anima-gsap="split-text"]');

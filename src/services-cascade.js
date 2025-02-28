@@ -1,4 +1,4 @@
-import { gsap } from "./gsap-adapter.js";
+import { gsap } from "gsap";
 
 document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.matchMedia("(max-width: 479px)");
