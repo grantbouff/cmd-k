@@ -1,42 +1,41 @@
+import { gsap, ScrollTrigger, CustomEase } from "./gsap-adapter.js";
+
+// Import all component modules
 import "./benefits-simple-slide.js";
 import "./check-box-logic.js";
 import "./gsap-split-text.js";
 import "./projects-slider.js";
 import "./services-cascade.js";
 import "./method-cards.js";
-import {gsap} from "gsap";
-import {ScrollTrigger} from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
-
+// Create namespace
 window.CMD_K = window.CMD_K || {};
 
-// Simple initialization function that just checks dependencies
-// and calls the code that's already in your other files
+// Initialize function
 window.CMD_K.init = function() {
   console.log("Initializing CMD_K components");
   
-  // Check for required dependencies
-  if (typeof gsap === 'undefined') {
-    console.error("GSAP is not loaded");
+  // Check dependencies
+  if (typeof gsap === 'undefined' || !gsap) {
+    console.error("GSAP is not loaded. Please add the GSAP CDN to your page.");
     return;
   }
   
-  if (typeof ScrollTrigger === 'undefined' && gsap.ScrollTrigger === undefined) {
-    console.error("ScrollTrigger is not loaded");
+  if (typeof ScrollTrigger === 'undefined' && !gsap.ScrollTrigger) {
+    console.error("ScrollTrigger is not loaded. Please add the ScrollTrigger CDN to your page.");
     return;
   }
   
-  // The real initialization happens in your individual files
-  // which will run as part of the bundled JS
-  console.log("Dependencies loaded, individual components will initialize themselves");
+  console.log("Dependencies loaded, individual components are initialized");
 };
 
-// Call the initialization function when the page loads
+// Initialize on DOM ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', window.CMD_K.init);
 } else {
   // If DOMContentLoaded has already fired
   window.CMD_K.init();
 }
+
+// Export common utilities for other modules to use
+export { gsap, ScrollTrigger, CustomEase };

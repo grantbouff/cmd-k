@@ -1,7 +1,4 @@
-import { gsap } from "gsap";
-import { CustomEase } from "gsap/CustomEase";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(CustomEase, ScrollTrigger); 
+import { gsap, CustomEase } from "./gsap-adapter.js";
 
 document.addEventListener("DOMContentLoaded", function() {
     
