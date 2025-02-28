@@ -5,23 +5,37 @@ gsap.registerPlugin(CustomEase, ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded", function() {
     
+    const methodContainer = document.querySelector(".section_method .container-large");
+    const methodWrapper = document.querySelector(".method_wrapper");
+
     CustomEase.create("easeSnap", "M0,0 C0.155,-0.11 0.319,-0.022 0.411,0.169 0.457,0.266 0.553,0.789 0.615,1 0.652,1.127 0.988,1.12 1,1 ");
 
     // Initialize the timeline
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".method_wrapper",
-        // markers: true,
-        start: "30% center", 
-        end: "+=100%",    // This makes the pinned section effectively twice its height
-        pin: true,        // This is the key addition
-        scrub: 2,         // Simplified scrub for better control
-        pinSpacing: true  // Ensures proper spacing
+        trigger: methodContainer,
+        markers: true,
+        start: "45% center", 
+        end: "+=100%",    
+        pin: true,        
+        scrub: 2,         
+        pinSpacing: true,
+        pinReparent: true   
       },
     });
+
+    gsap.from(methodWrapper, {
+        scrollTrigger: {
+          trigger: methodContainer,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 4,
+        },
+        y: "20%",  // Start from 20% down and move up
+        ease: "none"
+      });
     
     
-    // Animation for mc-intro - using the snap effect
     tl.fromTo("#mc-intro", 
       {
         scale: 2.25,
