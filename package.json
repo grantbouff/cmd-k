@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "Webflow components",
   "scripts": {
-    "build2": "esbuild --bundle src/init.js --outfile=dist/home-bundle.js --minify",
+    "build2": "npx esbuild --bundle src/init.js --outfile=dist/home-bundle.js --minify",
     "build": "node bundle.js"
-
   },
   "dependencies": {
-    "esbuild": "^0.25.0",
     "gsap": "^3.12.7"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
   }
 }
