@@ -1,23 +1,29 @@
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
-gsap.registerPlugin(CustomEase); 
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(CustomEase, ScrollTrigger); 
 
 document.addEventListener("DOMContentLoaded", function() {
+    
+    CustomEase.create("easeSnap", "M0,0 C0.155,-0.11 0.319,-0.022 0.411,0.169 0.457,0.266 0.553,0.789 0.615,1 0.652,1.127 0.988,1.12 1,1 ");
 
-    
-    
     // Initialize the timeline
     const tl = gsap.timeline({
-    scrollTrigger: {
+      scrollTrigger: {
         trigger: ".method_wrapper",
-        start: "20% 100%",
-        end: "bottom 120%",
-        scrub: 2,
         markers: true,
+        start: "20% 100%",
+        end: "bottom 110%",
+        scrub: {
+            ease: "power2.in",
+            duration: 20000
         }
+      }
     });
     
-    // Animation for mc-intro
+
+    
+    // Animation for mc-intro - using the snap effect
     tl.fromTo("#mc-intro", 
       {
         scale: 2.25,
@@ -25,18 +31,32 @@ document.addEventListener("DOMContentLoaded", function() {
       },
       {
         scale: 1,
-        duration: 6,
-        ease: CustomEase.create("custom", "M0,0 C0.155,-0.11 0.319,-0.022 0.411,0.169 0.457,0.266 0.553,0.789 0.615,1 0.652,1.127 0.988,1.12 1,1 ")
+        duration: 5000,
+        ease: "easeSnap" // Using our snap effect
       }
     );
+
+    tl.fromTo("[intro-child]", 
+        {
+          y: "50%",
+          scale: 0.025,
+          opacity: 0
+        },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 5000,
+          stagger: 0.5,
+        //   ease: "snapIn"
+        }, 
+        "<+.9" 
+      );
     
-    
-    // Get reference to the center element (either use mc-intro or any other reference point)
+    // Get reference to the center element
     const centerElement = document.querySelector("#mc-intro");
     const cards = Array.from({ length: 9 }, (_, i) => `#mc${i+1}`);
     const randomRotations = cards.map(() => gsap.utils.random(-20, 20));
-
-    ease: CustomEase.create("snapEase", "M0,0 C0.029,0.684 0.568,1.003 0.702,1.076 0.876,1.17 1,1.13 1,1 ");
     
     // Card-specific animation configurations
     const cardConfigs = [
@@ -89,10 +109,9 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // Animate each card individually with their specific configurations
     cardConfigs.forEach((card, index) => {
-        const element = document.querySelector(card.id);
-        if (!element) return;
+      const element = document.querySelector(card.id);
+      if (!element) return;
       
-    
       gsap.set(element, {
         x: card.startX,
         y: card.startY,
@@ -109,9 +128,9 @@ document.addEventListener("DOMContentLoaded", function() {
         opacity: 1,
         scale: 1,
         rotation: 0,
-        duration: 6,
-        ease: "snapEase"
-      }, `<+ 0.1`);
+        duration: 5000,
+        ease: "easeSnap" // Using our snap effect
+      }, `<+0.15`);
     });
     
   });

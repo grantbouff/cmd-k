@@ -34,8 +34,8 @@ function initBenefitAnimations() {
         start: "clamp(top 90%)",
         end: "clamp(top 20%)",
         scrub: {
-        ease: "power2.out",
-        duration: .5
+          ease: "power2.out",
+          duration: .5
           }
         },
         y: "-300%",
