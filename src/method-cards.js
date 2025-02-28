@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: methodContainer,
-        markers: true,
+        // markers: true,
         start: "45% center", 
         end: "+=100%",    
         pin: true,        
