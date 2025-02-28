@@ -12,45 +12,45 @@ document.addEventListener("DOMContentLoaded", function() {
       scrollTrigger: {
         trigger: ".method_wrapper",
         markers: true,
-        start: "20% 100%",
-        end: "bottom 110%",
-        scrub: {
-            ease: "power2.in",
-            duration: 20000
-        }
-      }
+        start: "30% center", 
+        end: "+=100%",    // This makes the pinned section effectively twice its height
+        pin: true,        // This is the key addition
+        scrub: 2,         // Simplified scrub for better control
+        pinSpacing: true  // Ensures proper spacing
+      },
     });
     
-
     
     // Animation for mc-intro - using the snap effect
     tl.fromTo("#mc-intro", 
       {
         scale: 2.25,
+        y: "25%",
         transformOrigin: "center center"
       },
       {
         scale: 1,
-        duration: 5000,
-        ease: "easeSnap" // Using our snap effect
+        y: "0%",
+        duration: 1.5,
+        ease: "easeSnap" 
       }
     );
 
     tl.fromTo("[intro-child]", 
         {
-          y: "50%",
-          scale: 0.025,
+          y: "100%",
+          scale: 0.95,
           opacity: 0
         },
         {
-          y: 0,
+          y: "0%",
           opacity: 1,
           scale: 1,
-          duration: 5000,
-          stagger: 0.5,
+          duration: 0.5,
+          stagger: 0.125,
         //   ease: "snapIn"
         }, 
-        "<+.9" 
+        "<50%" 
       );
     
     // Get reference to the center element
@@ -111,6 +111,9 @@ document.addEventListener("DOMContentLoaded", function() {
     cardConfigs.forEach((card, index) => {
       const element = document.querySelector(card.id);
       if (!element) return;
+
+      const startOffset = index === 0 ? "-=100%" : // First card starts very early
+                                        "<1%";  // All other cards start after the previous one
       
       gsap.set(element, {
         x: card.startX,
@@ -128,9 +131,13 @@ document.addEventListener("DOMContentLoaded", function() {
         opacity: 1,
         scale: 1,
         rotation: 0,
-        duration: 5000,
+        duration: 1.5,
+        stagger:{ 
+            from: "random",
+            amount: 5,
+            },
         ease: "easeSnap" // Using our snap effect
-      }, `<+0.15`);
+      }, startOffset);
     });
     
   });
