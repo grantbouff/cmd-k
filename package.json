@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Webflow components",
   "scripts": {
-    "build2": "esbuild --bundle src/init.js --outfile=dist/bundle.js --minify",
+    "build2": "esbuild --bundle src/init.js --outfile=dist/home-bundle.js --minify",
     "build": "node bundle.js"
 
   },
