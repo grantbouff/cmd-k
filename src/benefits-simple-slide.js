@@ -23,7 +23,13 @@ const mediaQuery = window.matchMedia("(min-width: 768px)");
 
 function initBenefitAnimations() {
     // Clear any existing ScrollTriggers
-    ScrollTrigger.getAll().forEach(st => st.kill());
+    if (ScrollTrigger && typeof ScrollTrigger.getAll === 'function') {
+      try {
+        ScrollTrigger.getAll().forEach(st => st.kill());
+      } catch (e) {
+        console.warn("Error clearing ScrollTriggers:", e);
+      }
+    }
   
     // Title animation stays the same
     if (mediaQuery.matches && benefitsTitle) {

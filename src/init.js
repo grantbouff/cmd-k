@@ -1,5 +1,9 @@
 import { gsap, ScrollTrigger, CustomEase } from "./gsap-adapter.js";
 
+// Explicitly register plugins to be safe
+if (gsap && ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+if (gsap && CustomEase) gsap.registerPlugin(CustomEase);
+
 // Import all component modules
 import "./benefits-simple-slide.js";
 import "./check-box-logic.js";
