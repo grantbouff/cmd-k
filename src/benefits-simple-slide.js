@@ -1,5 +1,7 @@
 import { gsap, ScrollTrigger } from "./gsap-adapter.js";
 
+gsap.registerPlugin(ScrollTrigger) 
+
 
 const benefits = document.querySelector(".benefits_all-cards");
 const benefitsWrapper = document.querySelector(".benefits_wrapper");
