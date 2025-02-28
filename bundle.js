@@ -10,7 +10,8 @@ const bundles = {
     'projects-slider.js',
     'services-cascade.js',
     'benefits-simple-slide.js',
-    'check-box-logic.js'
+    'check-box-logic.js',
+    'method-cards.js',
   ]
 };
 
