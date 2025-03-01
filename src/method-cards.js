@@ -14,60 +14,46 @@ document.addEventListener("DOMContentLoaded", function() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: methodContainer,
-        // markers: true,
-        start: "45% center", 
+        markers: true,
+        start: "35% center", 
         end: "+=100%",    
         pin: true,        
         scrub: 2,         
-        pinSpacing: true,
-        pinReparent: true   
+        pinSpacing: true
+        // pinReparent: true   
       },
     });
 
     gsap.from(methodWrapper, {
-        scrollTrigger: {
-          trigger: methodContainer,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 4,
-        },
-        y: "20%",  // Start from 20% down and move up
-        ease: "none"
-      });
-    
-    
-    tl.fromTo("#mc-intro", 
-      {
-        scale: 2.25,
-        y: "25%",
-        transformOrigin: "center center"
+      scrollTrigger: {
+        trigger: methodContainer,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 4,
       },
-      {
-        scale: 1,
-        y: "0%",
-        duration: 1.5,
-        ease: "easeSnap" 
-      }
-    );
-
-    tl.fromTo("[intro-child]", 
-        {
-          y: "100%",
-          scale: 0.95,
-          opacity: 0
-        },
-        {
-          y: "0%",
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
-          stagger: 0.125,
-        //   ease: "snapIn"
-        }, 
-        "<50%" 
-      );
+      y: "-10%",  
+      ease: "none"
+    });
     
-    // Get reference to the center element
+    tl.from("#mc-intro", {
+      border: ".25px",
+      scale: 2.25,
+      y: "25%",
+      transformOrigin: "center center",
+      duration: 1.5,
+      ease: "easeSnap"
+    });
+
+    tl.from("[intro-child]", {
+      y: "100%",
+      scale: 0.95,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.125,
+      // ease: "snapIn"
+    }, "<50%");
+    
+  
     const centerElement = document.querySelector("#mc-intro");
     const cards = Array.from({ length: 9 }, (_, i) => `#mc${i+1}`);
     const randomRotations = cards.map(() => gsap.utils.random(-20, 20));
