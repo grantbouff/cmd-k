@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create a separate ScrollTrigger for the pinned section
         // const pinnedSection = ScrollTrigger.create({
         //     trigger: methodContainer,
-        //     markers: true,
         //     id: "mobile-intro-card",
         //     start: "top 15%", 
         //     end: "+=10%",    // Adjust this value to control when unpinning happens
@@ -52,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
             start: "-10% 15%", 
             end: "+=100%",   // Match the pinned section's end
             scrub: 1,
-            markers: false   // Set to false to avoid duplicate markers
           }
         });
 
@@ -143,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: methodContainer,
-            markers: true,
+            // markers: true,
             start: "35% center", 
             end: "+=100%",    
             pin: true,        
