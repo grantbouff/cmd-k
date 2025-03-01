@@ -14,12 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
       
     if (isMobile.matches) {
         // Mobile animations here
+
+        // Background parallax effect (separate from the pinned timeline)
         gsap.fromTo(methodWrapper, 
           {
             y: "50%"
           },
           { 
-            y: "0%",
+            y: "-5%",
             ease: "none",
             scrollTrigger: {
               trigger: methodContainer,
@@ -30,33 +32,41 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         );
 
+        // Create a separate ScrollTrigger for the pinned section
+        // const pinnedSection = ScrollTrigger.create({
+        //     trigger: methodContainer,
+        //     markers: true,
+        //     id: "mobile-intro-card",
+        //     start: "top 15%", 
+        //     end: "+=10%",    // Adjust this value to control when unpinning happens
+        //     // pin: true,
+        //     // pinSpacing: true,
+        //     // anticipatePin: 1  // Helps with smoother pin start
+        // });
+
+        // Create animation timeline separate from pin
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: methodContainer,
-            markers: true,
-            id: "mobile-intro-card",
-            start: "top 15%", 
-            end: "center 15%",    
-            pin: true,
-            pinSpacing: true,       
-            scrub: 1 
-          },
+            id: "mobile-anim",
+            start: "-10% 15%", 
+            end: "+=100%",   // Match the pinned section's end
+            scrub: 1,
+            markers: false   // Set to false to avoid duplicate markers
+          }
         });
 
         tl.from("[intro-card-bg]", {
           scaleY: 2.5,
-          // y: "25%",
           transformOrigin: "top center",
-          duration: .5,
+          duration: .25,
           ease: "power1.out"
         });
 
         tl.from("[intro-child]", {
           y: "75%",
-          // scaleY: .5,
           opacity: 0,
-          duration: .5,
-          // stagger: 0.05,
+          duration: .25,
           ease: "power1.out"
         }, "<15%");
 
@@ -93,15 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Visual order of cards:", visualOrderCards.map(card => card.id));
 
         // Animate each card in the visual order
-
         visualOrderCards.forEach((card, index) => {
-
-          const startOffset = index === 0 ? "-=85%" : "-=85%"; // First card starts very early, all others start after the previous one
+          const startOffset = index === 0 ? "-=75%" : "<6%"; 
 
           gsap.set(card.element, {
             y: "100%",
             opacity: 0,
-            // scale: 0.8,
             transformOrigin: "top center"
           });
         
@@ -111,8 +118,25 @@ document.addEventListener('DOMContentLoaded', () => {
             duration: .5,
             ease: "power1.out"
           }, startOffset);
-        }
-        );
+        });
+      
+        
+        // Add overflow-cleanup animations if needed
+        gsap.to(".method_card", {
+          scrollTrigger: {
+            trigger: methodContainer,
+            start: "bottom center",
+            end: "bottom top",
+            scrub: 1,
+            markers: false,
+            id: "mobile-cleanup",
+            onEnter: () => console.log("Starting post-pin animations")
+          },
+          opacity: 0.85,  // Subtle fade effect as user scrolls past
+          scale: 0.95,
+          duration: 1,
+          ease: "power1.out"
+        });
 
     } else {
         // Desktop animations here
