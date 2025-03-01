@@ -5,6 +5,7 @@ gsap.registerPlugin(CustomEase, ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded", function() {
     
+    const isMobile = window.matchMedia("(max-width: 479px)");
     const methodContainer = document.querySelector(".section_method .container-large");
     const methodWrapper = document.querySelector(".method_wrapper");
 
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: methodContainer,
-        // markers: true,
+        markers: true,
         start: "35% center", 
         end: "+=100%",    
         pin: true,        
@@ -53,60 +54,23 @@ document.addEventListener("DOMContentLoaded", function() {
       // ease: "snapIn"
     }, "<50%");
     
-  
-    const centerElement = document.querySelector("#mc-intro");
+    // Create an array of card IDs and random rotations
     const cards = Array.from({ length: 9 }, (_, i) => `#mc${i+1}`);
     const randomRotations = cards.map(() => gsap.utils.random(-20, 20));
     
     // Card-specific animation configurations
     const cardConfigs = [
-      { 
-        id: "#mc1", 
-        startX: "100%",    
-        startY: "100%"
-      },
-      { 
-        id: "#mc2", 
-        startX: "0%",    
-        startY: "100%" 
-      },
-      { 
-        id: "#mc3", 
-        startX: "-100%",    
-        startY: "100%"
-      },
-      { 
-        id: "#mc4", 
-        startX: "100%",    
-        startY: "0%" 
-      },
-      { 
-        id: "#mc5", 
-        startX: "-100%",    
-        startY: "0%" 
-      },
-      { 
-        id: "#mc6", 
-        startX: "100%",    
-        startY: "-100%" 
-      },
-      { 
-        id: "#mc7", 
-        startX: "50%",    
-        startY: "-100%" 
-      },
-      { 
-        id: "#mc8", 
-        startX: "0%",    
-        startY: "-100%" 
-      },
-      { 
-        id: "#mc9", 
-        startX: "-100%",    
-        startY: "-100%" 
-      }
+      {id: "#mc1", startX: "100%", startY: "100%"},
+      {id: "#mc2",startX: "0%", startY: "100%" },
+      {id: "#mc3", startX: "-100%", startY: "100%"},
+      {id: "#mc4", startX: "100%", startY: "0%" },
+      {id: "#mc5", startX: "-100%", startY: "0%" },
+      {id: "#mc6", startX: "100%", startY: "-100%" },
+      {id: "#mc7", startX: "50%", startY: "-100%" },
+      {id: "#mc8", startX: "0%", startY: "-100%" },
+      {id: "#mc9", startX: "-100%", startY: "-100%" }
     ];
-    
+      
     // Animate each card individually with their specific configurations
     cardConfigs.forEach((card, index) => {
       const element = document.querySelector(card.id);
