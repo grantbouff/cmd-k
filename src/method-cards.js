@@ -126,9 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
             start: "bottom center",
             end: "bottom top",
             scrub: 1,
-            markers: false,
-            id: "mobile-cleanup",
-            onEnter: () => console.log("Starting post-pin animations")
           },
           opacity: 0.85,  // Subtle fade effect as user scrolls past
           scale: 0.95,
@@ -141,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: methodContainer,
-            // markers: true,
             start: "35% center", 
             end: "+=100%",    
             pin: true,        

@@ -16,10 +16,10 @@ const projectSlider = new Swiper(".swiper.is-projects", {
     centeredSlides: true,
     speed: 700,
     slidesPerView: 'auto',
-    loop: true,
+    loop: false,
 
     //Navigating the swiper
-    slideToClickedSlide:true,
+    slideToClickedSlide: true,
     direction: 'horizontal',
     mousewheel: {
       forceToAxis: true

@@ -4,10 +4,13 @@ import "./gsap-split-text.js";
 import "./projects-slider.js";
 import "./services-cascade.js";
 import "./method-cards.js";
+import "./footer-draggable.js";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
+import { Draggable } from "gsap/Draggable";
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(Draggable);
 
 
 window.CMD_K = window.CMD_K || {};
