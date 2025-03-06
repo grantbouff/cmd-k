@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "Webflow components",
   "scripts": {
-    "build2": "npx esbuild --bundle src/init.js --outfile=dist/home-bundle.js --minify",
-    "watch": "npx esbuild --bundle src/init.js --outfile=dist/home-bundle.js --minify --watch",
-    "build": "node bundle.js"
+    "build": "npx esbuild --bundle src/init.js --outfile=dist/home-bundle.js --minify",
+    "watch": "npx esbuild --bundle src/init.js --outfile=dist/home-bundle.js --minify --watch"
   },
   "dependencies": {
     "gsap": "^3.12.7"

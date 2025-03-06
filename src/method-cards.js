@@ -128,10 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
           scrollTrigger: {
             markers: true,
             trigger: methodContainer,
-            start: "25% center", 
+            start: "35% center", 
             end: "+=100%",    
             pin: true,        
-            scrub: 2,         
+            scrub: 1,         
             pinSpacing: true
             // pinReparent: true   
           },
@@ -142,9 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
             trigger: methodContainer,
             start: "top bottom",
             end: "bottom top",
-            scrub: 4,
+            scrub: 3,
           },
-          y: "-10%",  
+          y: "10%",  
           ease: "none"
         });
         
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             duration: 1.5,
             stagger:{ 
                 from: "random",
-                amount: 5,
+                amount: .5,
                 },
             ease: "easeSnap" // Using our snap effect
           }, startOffset);
