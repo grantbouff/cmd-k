@@ -3,7 +3,7 @@ import "./check-box-logic.js";
 import "./gsap-split-text.js";
 import "./projects-slider.js";
 import "./services-cascade.js";
-import "./method-cards.js";
+// import "./method-cards.js";
 import "./footer-draggable.js";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";

@@ -44,16 +44,16 @@ function initBenefitAnimations() {
     }
   
     // Create a vertical scroll animation for the wrapper
-    gsap.from(benefitsWrapper, {
-      scrollTrigger: {
-        trigger: benefitsWrapper,
-        start: animaStart,
-        end: "clamp(bottom 0%)",
-        scrub: 1.5,
-      },
-      y: "20%",
-      ease: "none"
-    });
+    // gsap.from(benefitsWrapper, {
+    //   scrollTrigger: {
+    //     trigger: benefitsWrapper,
+    //     start: animaStart,
+    //     end: "clamp(bottom 0%)",
+    //     scrub: 1.5,
+    //   },
+    //   y: "20%",
+    //   ease: "none"
+    // });
   
     // Create a timeline for both container and cards
     const distance = getScrollAmount();
@@ -63,7 +63,7 @@ function initBenefitAnimations() {
         trigger: benefitsWrapper,
         start: animaStart,
         end: window.innerWidth < 768 ? "top 20%" : "clamp(top 50%)",
-        scrub: 1.5,
+        scrub: 1,
         invalidateOnRefresh: true
       }
     });
@@ -71,11 +71,11 @@ function initBenefitAnimations() {
     // Add the animations to the timeline
     tl.to(benefits, {
       x: distance * 0.5, // Move container partially
-      ease: window.innerWidth < 768 ? "back.in(1)" : "back.in(1.4)",
+      ease: window.innerWidth < 768 ? "power2.in" : "power3.in",
     })
     .to(cards, {
       x: distance * 0.5, // Complete the remaining distance with stagger
-      ease: window.innerWidth < 768 ? "back.in(1)" : "back.in(1.4)",
+      ease: window.innerWidth < 768 ? "power2.in" : "power3.in",
       stagger: {
         each: 0.01,
         from: "start"

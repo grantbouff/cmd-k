@@ -32,17 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         );
 
-        // Create a separate ScrollTrigger for the pinned section
-        // const pinnedSection = ScrollTrigger.create({
-        //     trigger: methodContainer,
-        //     id: "mobile-intro-card",
-        //     start: "top 15%", 
-        //     end: "+=10%",    // Adjust this value to control when unpinning happens
-        //     // pin: true,
-        //     // pinSpacing: true,
-        //     // anticipatePin: 1  // Helps with smoother pin start
-        // });
-
         // Create animation timeline separate from pin
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -137,8 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Desktop animations here
         const tl = gsap.timeline({
           scrollTrigger: {
+            markers: true,
             trigger: methodContainer,
-            start: "35% center", 
+            start: "25% center", 
             end: "+=100%",    
             pin: true,        
             scrub: 2,         
@@ -158,9 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
           ease: "none"
         });
         
-        tl.from("#mc-intro", {
+
+        tl.from("[intro-card-bg]", {
           border: ".25px",
-          scale: 2.25,
+          scale: 2.025,
           y: "25%",
           transformOrigin: "center center",
           duration: 1.5,
