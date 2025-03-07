@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const methodContainer = document.querySelector(".section_method .container-large");
     const methodWrapper = document.querySelector(".method_wrapper");
 
-    CustomEase.create("easeSnap", "M0,0 C0.155,-0.11 0.319,-0.022 0.411,0.169 0.457,0.266 0.553,0.789 0.615,1 0.652,1.127 0.988,1.12 1,1 ");
+    CustomEase.create("easeSnap", "M0,0 C0.321,0.079 0.438,0.613 0.5,1 0.526,1.165 1,1.137 1,1 ");
 
       
     if (isMobile.matches) {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
               trigger: methodContainer,
               start: "top bottom",
               end: "bottom bottom",
-              scrub: 1
+              scrub: 2
             }
           }
         );
@@ -35,25 +35,27 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create animation timeline separate from pin
         const tl = gsap.timeline({
           scrollTrigger: {
+            markers: true,
             trigger: methodContainer,
-            id: "mobile-anim",
-            start: "-10% 15%", 
-            end: "+=100%",   // Match the pinned section's end
-            scrub: 1,
+            id: "mobile-anima",
+            start: "20% 50%", 
+            end: "+=50%",   // Match the pinned section's end
+            // scrub: 1,
+            toggleActions: "play none none reverse"  
           }
         });
 
         tl.from("[intro-card-bg]", {
-          scaleY: 2.5,
+          scaleY: 2,
           transformOrigin: "top center",
-          duration: .25,
+          duration: 1.5,
           ease: "power1.out"
         });
 
         tl.from("[intro-child]", {
           y: "75%",
           opacity: 0,
-          duration: .25,
+          duration: 1,
           ease: "power1.out"
         }, "<15%");
 
@@ -91,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Animate each card in the visual order
         visualOrderCards.forEach((card, index) => {
-          const startOffset = index === 0 ? "-=75%" : "<6%"; 
+          const startOffset = index === 0 ? "-=75%" : "<5%"; 
 
           gsap.set(card.element, {
             y: "100%",
@@ -102,37 +104,38 @@ document.addEventListener('DOMContentLoaded', () => {
           tl.to(card.element, {
             y: 0,
             opacity: 1,
-            duration: .5,
+            duration: 1.5,
             ease: "power1.out"
           }, startOffset);
         });
       
         
-        // Add overflow-cleanup animations if needed
-        gsap.to(".method_card", {
-          scrollTrigger: {
-            trigger: methodContainer,
-            start: "bottom center",
-            end: "bottom top",
-            scrub: 1,
-          },
-          opacity: 0.85,  // Subtle fade effect as user scrolls past
-          scale: 0.95,
-          duration: 1,
-          ease: "power1.out"
-        });
+        // // Add overflow-cleanup animations if needed
+        // gsap.to(".method_card", {
+        //   scrollTrigger: {
+        //     trigger: methodContainer,
+        //     start: "bottom center",
+        //     end: "bottom top",
+        //     scrub: 1,
+        //   },
+        //   opacity: 0.85,  // Subtle fade effect as user scrolls past
+        //   scale: 0.95,
+        //   duration: 1,
+        //   ease: "power1.out"
+        // });
 
     } else {
         // Desktop animations here
         const tl = gsap.timeline({
           scrollTrigger: {
-            markers: true,
+            // markers: true,
             trigger: methodContainer,
-            start: "35% center", 
-            end: "+=100%",    
-            pin: true,        
-            scrub: 1,         
-            pinSpacing: true
+            start: "35% 80%", 
+            end: "+=0%",  
+            toggleActions: "play none none reverse"  
+            // pin: true,        
+            // scrub: 1,         
+            // pinSpacing: true
             // pinReparent: true   
           },
         });
