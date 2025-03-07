@@ -16,7 +16,7 @@ const projectSlider = new Swiper(".swiper.is-projects", {
     centeredSlides: true,
     speed: 700,
     slidesPerView: 'auto',
-    loop: false,
+    loop: true,
 
     //Navigating the swiper
     slideToClickedSlide: true,
