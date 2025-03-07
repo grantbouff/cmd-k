@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create animation timeline separate from pin
         const tl = gsap.timeline({
           scrollTrigger: {
-            markers: true,
+            // markers: true,
             trigger: methodContainer,
             id: "mobile-anima",
             start: "20% 50%", 
