@@ -3,30 +3,82 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const benefits = document.querySelector(".benefits_all-cards");
-const benefitsWrapper = document.querySelector(".benefits_wrapper");
-const cards = benefits.querySelectorAll('.benefits_card');
-const benefitsTitle = document.querySelector("#benefit-title.global_section-title");
-const animaStart = "clamp(top 100%)";
+document.addEventListener('DOMContentLoaded', () => {
 
-function getScrollAmount() {
-  const initialOffset = benefits.getBoundingClientRect().x - benefitsWrapper.getBoundingClientRect()
-    .x;
-  const benefitsWidth = benefits.scrollWidth;
-  const wrapperWidth = benefitsWrapper.offsetWidth;
-  return -(benefitsWidth + initialOffset - wrapperWidth);
-}
+  const isMobile = window.matchMedia("(max-width: 767px)");
+  const benefitsSection = document.querySelector(".section_benefits");
+  const benefitsWrapper = document.querySelector(".benefits_wrapper");
+  const benefits = document.querySelector(".benefits_all-cards");
+  const cards = benefits.querySelectorAll('.benefits_card');
+  const benefitsTitle = document.querySelector("#benefit-title.global_section-title");
+  const mobileStart = "bottom 90%";
+  const mobileEnd = "+=50%";
 
-// Create a media query for 768px and above
-const mediaQuery = window.matchMedia("(min-width: 768px)");
+  function getScrollAmount() {
+    const initialOffset = benefits.getBoundingClientRect().x - benefitsWrapper.getBoundingClientRect()
+      .x;
+    const benefitsWidth = benefits.scrollWidth;
+    const wrapperWidth = benefitsWrapper.offsetWidth;
+    return -(benefitsWidth + initialOffset - wrapperWidth);
+  }
 
 
-function initBenefitAnimations() {
-    // Clear any existing ScrollTriggers
-    ScrollTrigger.getAll().forEach(st => st.kill());
-  
-    // Title animation stays the same
-    if (mediaQuery.matches && benefitsTitle) {
+  if (isMobile.matches) {
+    // Mobile animations here
+
+    // Create a vertical scroll animation for the wrapper
+    gsap.fromTo(benefitsWrapper,
+      {
+        y: "20%"
+      },
+      { 
+      y: "-10%",
+      ease: "none",
+      scrollTrigger: {
+        trigger: benefitsSection,
+        start: mobileStart,
+        end: mobileEnd,
+        scrub: 1,
+      },
+    });
+
+    const distance = getScrollAmount();
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        // markers: true,
+        trigger: benefitsSection,
+        start: mobileStart,
+        end: mobileEnd,
+        pin: true,        
+        scrub: 1,         
+        pinSpacing: true,
+        invalidateOnRefresh: true
+      }
+    });
+
+    // Add the animations to the timeline
+    tl.to(benefits, {
+      x: distance * 0.5, // Move container partially
+      ease: "power1.in",
+    })
+    .to(cards, {
+      x: distance * 0.5, // Complete the remaining distance with stagger
+      ease: "power1.in",
+      stagger: {
+        each: 0.01,
+        from: "start"
+      }
+    }, "<"); 
+
+
+
+  } else {
+    // Desktop animations here
+
+    function benefitDesktop() {
+      // Clear any existing ScrollTriggers
+      ScrollTrigger.getAll().forEach(st => st.kill());
+    
       gsap.to(benefitsTitle, {
         scrollTrigger: {
         // markers: true,
@@ -41,51 +93,43 @@ function initBenefitAnimations() {
         y: "-300%",
         ease: "power2.out"
       });
-    }
-  
-    // Create a vertical scroll animation for the wrapper
-    // gsap.from(benefitsWrapper, {
-    //   scrollTrigger: {
-    //     trigger: benefitsWrapper,
-    //     start: animaStart,
-    //     end: "clamp(bottom 0%)",
-    //     scrub: 1.5,
-    //   },
-    //   y: "20%",
-    //   ease: "none"
-    // });
-  
-    // Create a timeline for both container and cards
-    const distance = getScrollAmount();
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        // markers: true,
-        trigger: benefitsWrapper,
-        start: animaStart,
-        end: window.innerWidth < 768 ? "top 20%" : "clamp(top 50%)",
-        scrub: 1,
-        invalidateOnRefresh: true
-      }
-    });
 
-    // Add the animations to the timeline
-    tl.to(benefits, {
-      x: distance * 0.5, // Move container partially
-      ease: window.innerWidth < 768 ? "power2.in" : "power3.in",
-    })
-    .to(cards, {
-      x: distance * 0.5, // Complete the remaining distance with stagger
-      ease: window.innerWidth < 768 ? "power2.in" : "power3.in",
-      stagger: {
-        each: 0.01,
-        from: "start"
-      }
-    }, "<"); 
-}
+      // Create a timeline for both container and cards
+      const distance = getScrollAmount();
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          // markers: true,
+          trigger: benefitsWrapper,
+          start: "clamp(top 90%)",
+          end: "top 30%",
+          scrub: 1,
+          invalidateOnRefresh: true
+        }
+      });
+
+      // Add the animations to the timeline
+      tl.to(benefits, {
+        x: distance * 0.5, // Move container partially
+        ease: "power1.in",
+      })
+      .to(cards, {
+        x: distance * 0.5, // Complete the remaining distance with stagger
+        ease: "power1.in",
+        stagger: {
+          each: 0.01,
+          from: "start"
+        }
+      }, "<"); 
+  }
 
 
 
-initBenefitAnimations();
+  benefitDesktop();
 
-// Re-init on screen size change
-mediaQuery.addEventListener('change', initBenefitAnimations);
+  // Re-init on screen size change
+  isMobile.addEventListener('change', benefitDesktop);
+
+};
+
+
+});

@@ -15,22 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isMobile.matches) {
         // Mobile animations here
 
-        // Background parallax effect (separate from the pinned timeline)
-        gsap.fromTo(methodWrapper, 
-          {
-            y: "50%"
-          },
-          { 
-            y: "-5%",
-            ease: "none",
-            scrollTrigger: {
-              trigger: methodContainer,
-              start: "top bottom",
-              end: "bottom bottom",
-              scrub: 2
-            }
-          }
-        );
+        // // Background parallax effect (separate from the pinned timeline)
+        // gsap.fromTo(methodWrapper, 
+        //   {
+        //     y: "50%"
+        //   },
+        //   { 
+        //     y: "-5%",
+        //     ease: "none",
+        //     scrollTrigger: {
+        //       trigger: methodContainer,
+        //       start: "top bottom",
+        //       end: "bottom bottom",
+        //       scrub: 2
+        //     }
+        //   }
+        // );
 
         // Create animation timeline separate from pin
         const tl = gsap.timeline({
