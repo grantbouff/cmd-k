@@ -46,7 +46,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
     Observer.create({
         target: content,
-        type: "pointer,touch", // Detect both pointer and touch events
+        type: "pointer,touch",
+        lockAxis: "x",
+        allowContextMenu: false,
+        allowEventDefault: false, // Detect both pointer and touch events
         onPress: () => tl.play(), // Play the timeline when pressing down
         onDrag: (self) => { // Update the horizontal position while dragging
             total += self.deltaX
