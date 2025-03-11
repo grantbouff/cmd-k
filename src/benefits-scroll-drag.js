@@ -37,9 +37,9 @@ window.addEventListener("DOMContentLoaded", () => {
         // Move each card horizontally based on the same random value
         // xPercent: (index) => (itemValues[index % cardsLength]),
         // Move each card vertically based on the same random value
-        yPercent: (index) => (itemValues[index % cardsLength]),
+        // yPercent: (index) => (itemValues[index % cardsLength]),
         // Slightly scale down the cards
-        scale: 0.95,
+        scale: 0.975,
         duration: 0.5,
         ease: 'back.inOut(2)', 
     });
