@@ -15,22 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isMobile.matches) {
         // Mobile animations here
 
-        // Background parallax effect (separate from the pinned timeline)
-        gsap.fromTo(methodWrapper, 
-          {
-            y: "50%"
-          },
-          { 
-            y: "-5%",
-            ease: "none",
-            scrollTrigger: {
-              trigger: methodContainer,
-              start: "top bottom",
-              end: "bottom bottom",
-              scrub: 2
-            }
-          }
-        );
+        // // Background parallax effect (separate from the pinned timeline)
+        // gsap.fromTo(methodWrapper, 
+        //   {
+        //     y: "50%"
+        //   },
+        //   { 
+        //     y: "-5%",
+        //     ease: "none",
+        //     scrollTrigger: {
+        //       trigger: methodContainer,
+        //       start: "top bottom",
+        //       end: "bottom bottom",
+        //       scrub: 2
+        //     }
+        //   }
+        // );
 
         // Create animation timeline separate from pin
         const tl = gsap.timeline({
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // markers: true,
             trigger: methodContainer,
             id: "mobile-anima",
-            start: "20% 50%", 
+            start: "top 50%", 
             end: "+=50%",   // Match the pinned section's end
             // scrub: 1,
             toggleActions: "play none none reverse"  
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tl.from("[intro-card-bg]", {
           scaleY: 2,
           transformOrigin: "top center",
-          duration: 1.5,
+          duration: 1.25,
           ease: "power1.out"
         });
 
@@ -104,25 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
           tl.to(card.element, {
             y: 0,
             opacity: 1,
-            duration: 1.5,
+            duration: 1.25,
             ease: "power1.out"
           }, startOffset);
         });
       
-        
-        // // Add overflow-cleanup animations if needed
-        // gsap.to(".method_card", {
-        //   scrollTrigger: {
-        //     trigger: methodContainer,
-        //     start: "bottom center",
-        //     end: "bottom top",
-        //     scrub: 1,
-        //   },
-        //   opacity: 0.85,  // Subtle fade effect as user scrolls past
-        //   scale: 0.95,
-        //   duration: 1,
-        //   ease: "power1.out"
-        // });
 
     } else {
         // Desktop animations here

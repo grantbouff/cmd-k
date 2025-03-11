@@ -29,16 +29,11 @@ window.addEventListener("DOMContentLoaded", () => {
         itemValues.push((Math.random() - 0.5) * 20);
     }
 
-    // Create a GSAP timeline and keep it paused initially
     const tl = gsap.timeline({ paused: true });
     tl.to(cards, {
-        // Rotate each card using a precomputed random value
         // rotate: (index) => (itemValues[index % cardsLength]),
-        // Move each card horizontally based on the same random value
         // xPercent: (index) => (itemValues[index % cardsLength]),
-        // Move each card vertically based on the same random value
-        // yPercent: (index) => (itemValues[index % cardsLength]),
-        // Slightly scale down the cards
+        yPercent: (index) => (itemValues[index % cardsLength]),
         scale: 0.975,
         duration: 0.5,
         ease: 'back.inOut(2)', 
@@ -49,7 +44,7 @@ window.addEventListener("DOMContentLoaded", () => {
         type: "pointer,touch",
         lockAxis: "x",
         allowContextMenu: false,
-        allowEventDefault: false, // Detect both pointer and touch events
+        // allowEventDefault: false, // Detect both pointer and touch events
         onPress: () => tl.play(), // Play the timeline when pressing down
         onDrag: (self) => { // Update the horizontal position while dragging
             total += self.deltaX
@@ -68,8 +63,8 @@ window.addEventListener("DOMContentLoaded", () => {
     ScrollTrigger.create({
         // markers: true,
         trigger: content,
-        start: "top bottom",
-        end: "bottom top",
+        start: "top 70%",
+        end: "bottom 50%",
         scrub: 1,
         onUpdate: (self) => {
             
