@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let tl = gsap.timeline({  
         scrollTrigger: {
-          markers: true,
+          // markers: true,
           trigger: ".section_services",
           start: "top 80%",
           end: "+=50%",
