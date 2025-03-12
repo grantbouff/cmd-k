@@ -1,5 +1,6 @@
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         y: "20%"
       },
       { 
-      y: "-10%",
+      y: "-5%",
       ease: "none",
       scrollTrigger: {
         trigger: benefitsSection,
@@ -56,13 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+
     // Add the animations to the timeline
     tl.to(benefits, {
-      x: distance * 0.5, // Move container partially
+      x: distance * 0.7, // Move container partially
       ease: "power1.in",
     })
     .to(cards, {
-      x: distance * 0.5, // Complete the remaining distance with stagger
+      x: distance * 0.3, // Complete the remaining distance with stagger
       ease: "power1.in",
       stagger: {
         each: 0.01,

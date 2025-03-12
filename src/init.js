@@ -1,16 +1,19 @@
+import "./benefits-simple-slide.js";
 import "./check-box-logic.js";
 import "./gsap-split-text.js";
 import "./projects-slider.js";
 import "./services-cascade.js";
 import "./method-cards.js";
-import "./benefits-scroll-drag.js";
 import "./footer-draggable.js";
+
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
-import { Draggable } from "gsap/Draggable";
+import {Draggable} from "gsap/Draggable";
+import {CustomEase} from "gsap/CustomEase";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Draggable);
+gsap.registerPlugin(CustomEase);
 
 
 window.CMD_K = window.CMD_K || {};

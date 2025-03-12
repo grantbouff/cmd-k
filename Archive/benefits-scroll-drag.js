@@ -60,19 +60,19 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
     // Add ScrollTrigger to fast forward/reverse the horizontal scroll
-    ScrollTrigger.create({
-        // markers: true,
-        trigger: content,
-        start: "top 70%",
-        end: "bottom 50%",
-        scrub: 1,
-        onUpdate: (self) => {
+    // ScrollTrigger.create({
+    //     // markers: true,
+    //     trigger: content,
+    //     start: "top 70%",
+    //     end: "bottom 50%",
+    //     scrub: 1,
+    //     onUpdate: (self) => {
             
-            const scrollDirection = self.direction === 1 ? -1 : 1; 
-            total += scrollDirection * 3.5; 
-            xTo(total);
-        }
-    });
+    //         const scrollDirection = self.direction === 1 ? -1 : 1; 
+    //         total += scrollDirection * 3.5; 
+    //         xTo(total);
+    //     }
+    // });
 
     gsap.ticker.add(tick);
 
