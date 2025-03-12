@@ -48,14 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
         tl.from("[intro-card-bg]", {
           scaleY: 2,
           transformOrigin: "top center",
-          duration: 1.5,
+          duration: 1,
           ease: "power1.out"
         });
 
         tl.from("[intro-child]", {
           y: "75%",
           opacity: 0,
-          duration: 1,
+          duration: .75,
           ease: "power1.out"
         }, "<15%");
 
@@ -104,13 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
           tl.to(card.element, {
             y: 0,
             opacity: 1,
-            duration: 1.5,
+            duration: 1,
             ease: "power1.out"
           }, startOffset);
         });
       
-        
-
 
     } else {
         // Desktop animations here
