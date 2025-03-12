@@ -27,50 +27,50 @@ document.addEventListener('DOMContentLoaded', () => {
   if (isMobile.matches) {
     // Mobile animations here
 
-    // Create a vertical scroll animation for the wrapper
-    gsap.fromTo(benefitsWrapper,
-      {
-        y: "20%"
-      },
-      { 
-      y: "-5%",
-      ease: "none",
-      scrollTrigger: {
-        trigger: benefitsSection,
-        start: mobileStart,
-        end: mobileEnd,
-        scrub: 1,
-      },
-    });
+    // // Create a vertical scroll animation for the wrapper
+    // gsap.fromTo(benefitsWrapper,
+    //   {
+    //     y: "20%"
+    //   },
+    //   { 
+    //   y: "-5%",
+    //   ease: "none",
+    //   scrollTrigger: {
+    //     trigger: benefitsSection,
+    //     start: mobileStart,
+    //     end: mobileEnd,
+    //     scrub: 1,
+    //   },
+    // });
 
-    const distance = getScrollAmount();
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        // markers: true,
-        trigger: benefitsSection,
-        start: mobileStart,
-        end: mobileEnd,
-        pin: true,        
-        scrub: 1,         
-        pinSpacing: true,
-        invalidateOnRefresh: true
-      }
-    });
+    // const distance = getScrollAmount();
+    // const tl = gsap.timeline({
+    //   scrollTrigger: {
+    //     // markers: true,
+    //     trigger: benefitsSection,
+    //     start: mobileStart,
+    //     end: mobileEnd,
+    //     pin: true,        
+    //     scrub: 1,         
+    //     pinSpacing: true,
+    //     invalidateOnRefresh: true
+    //   }
+    // });
 
 
-    // Add the animations to the timeline
-    tl.to(benefits, {
-      x: distance * 0.7, // Move container partially
-      ease: "power1.in",
-    })
-    .to(cards, {
-      x: distance * 0.3, // Complete the remaining distance with stagger
-      ease: "power1.in",
-      stagger: {
-        each: 0.01,
-        from: "start"
-      }
-    }, "<"); 
+    // // Add the animations to the timeline
+    // tl.to(benefits, {
+    //   x: distance * 0.7, // Move container partially
+    //   ease: "power1.in",
+    // })
+    // .to(cards, {
+    //   x: distance * 0.3, // Complete the remaining distance with stagger
+    //   ease: "power1.in",
+    //   stagger: {
+    //     each: 0.01,
+    //     from: "start"
+    //   }
+    // }, "<"); 
 
 
 
