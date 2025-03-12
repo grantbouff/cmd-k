@@ -4,6 +4,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.matchMedia("(max-width: 479px)");
     
     if (isMobile.matches) {
+
+
+    let tl = gsap.timeline({  
+        scrollTrigger: {
+          markers: true,
+          trigger: ".section_services",
+          start: "top 80%",
+          end: "+=50%",
+          scrub: 1.5,
+          // toggleActions: "play play reverse reset"
+        }
+      });
+
+      tl.from(".services_heading-wrapper", {
+        y: "50%",
+        opacity: 0,
+        duration: 1
+      });
+
       // Mobile animation - trigger each card individually
       gsap.utils.toArray(".services_card").forEach((card, index) => {
         let servicesTimeMobile = gsap.timeline({
